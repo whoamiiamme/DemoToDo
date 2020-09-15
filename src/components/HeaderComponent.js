@@ -90,14 +90,13 @@ class Header extends Component {
 										<span className='fa fa-address-card fa-lg' /> Contact Us
 									</NavLink>
 								</NavItem>
-
-								<Nav className='ml-auto' navbar>
-									<NavItem>
-										<Button outline onClick={this.toggleModal}>
-											<span className='fa fa-sign-in fa-lg' /> Login
-										</Button>
-									</NavItem>
-								</Nav>
+							</Nav>
+							<Nav className='ml-auto' navbar>
+								<NavItem>
+									<Button outline onClick={this.toggleModal}>
+										<span className='fa fa-sign-in fa-lg' /> Login
+									</Button>
+								</NavItem>
 							</Nav>
 						</Collapse>
 					</div>
