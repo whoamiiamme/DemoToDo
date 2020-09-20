@@ -13,8 +13,7 @@ import {
 	Label,
 	Modal,
 	ModalHeader,
-	ModalBody,
-	ModalFooter
+	ModalBody
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
@@ -37,7 +36,7 @@ function RenderDish({ dish }) {
 	);
 }
 
-function RenderComments({ comments, toggleModal }) {
+function RenderComments({ comments, addComment, dishId }) {
 	if (comments != null)
 		return (
 			<div className='col-sm-12 col-md-5 m-1'>
@@ -59,9 +58,8 @@ function RenderComments({ comments, toggleModal }) {
 						);
 					})}
 				</ul>
-				<Button outline color='secondary' onClick={toggleModal}>
-					<span class='fa fa-pencil' aria-hidden='true' /> Submit Comment
-				</Button>
+
+				<CommentForm dishId={dishId} addComment={addComment} />
 			</div>
 		);
 	else return <div />;
@@ -70,98 +68,113 @@ function RenderComments({ comments, toggleModal }) {
 class CommentForm extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			isModalOpen: false
+		};
+
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.toggleModal = this.toggleModal.bind(this);
 	}
 
 	handleSubmit(values) {
-		console.log('Current State is: ' + JSON.stringify(values));
-		alert('Current State is: ' + JSON.stringify(values));
-		this.props.toggleModal();
+		this.toggleModal();
+		this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+	}
+
+	toggleModal() {
+		this.setState({
+			isModalOpen: !this.state.isModalOpen
+		});
 	}
 
 	render() {
 		return (
-			<Modal isOpen={this.props.modal} toggle={this.props.toggleModal}>
-				<ModalHeader toggle={this.props.toggleModal}>Submit Comment</ModalHeader>
-				<ModalBody>
-					<LocalForm onSubmit={(values) => this.handleSubmit(values)}>
-						<Row className='form-grounp'>
-							<Label htmlFor='rating' xs={12}>
-								Rating
-							</Label>
-							<Col xs={12}>
-								<Control.select model='.rating' name='rating' className='form-control custom-select'>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</Control.select>
-							</Col>
-						</Row>
-						<Row className='form-grounp'>
-							<Label htmlFor='yourname' xs={12}>
-								Your Name
-							</Label>
-							<Col xs={12}>
-								<Control.text
-									model='.yourname'
-									id='yourname'
-									name='yourname'
-									className='form-control'
-									placeholder='Your Name'
-									validators={{
-										required,
-										minLength: minLength(3),
-										maxLength: maxLength(15)
-									}}
-								/>
-								<Errors
-									className='text-danger'
-									model='.yourname'
-									show='touched'
-									messages={{
-										required: 'Required',
-										minLength: 'Must be greater than 2 characters',
-										maxLength: 'Must be 15 characters or less'
-									}}
-								/>
-							</Col>
-						</Row>
-						<Row className='form-grounp'>
-							<Label htmlFor='comment' xs={12}>
-								Comment
-							</Label>
-							<Col xs={12}>
-								<Control.textarea
-									model='.comment'
-									id='comment'
-									name='comment'
-									className='form-control'
-									rows='6'
-								/>
-							</Col>
-						</Row>
-						<Row className='form-group'>
-							<Col xs={12}>
-								<Button type='submit' color='primary'>
-									Submit
-								</Button>
-							</Col>
-						</Row>
-					</LocalForm>
-				</ModalBody>
-			</Modal>
+			<div>
+				<Button outline color='secondary' onClick={this.toggleModal}>
+					<span class='fa fa-pencil' aria-hidden='true' /> Submit Comment
+				</Button>
+				<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+					<ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
+					<ModalBody>
+						<LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+							<Row className='form-grounp'>
+								<Label htmlFor='rating' xs={12}>
+									Rating
+								</Label>
+								<Col xs={12}>
+									<Control.select
+										model='.rating'
+										name='rating'
+										className='form-control custom-select'
+									>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</Control.select>
+								</Col>
+							</Row>
+							<Row className='form-grounp'>
+								<Label htmlFor='author' xs={12}>
+									Your Name
+								</Label>
+								<Col xs={12}>
+									<Control.text
+										model='.author'
+										id='author'
+										name='author'
+										className='form-control'
+										placeholder='Your Name'
+										validators={{
+											required,
+											minLength: minLength(3),
+											maxLength: maxLength(15)
+										}}
+									/>
+									<Errors
+										className='text-danger'
+										model='.author'
+										show='touched'
+										messages={{
+											required: 'Required',
+											minLength: 'Must be greater than 2 characters',
+											maxLength: 'Must be 15 characters or less'
+										}}
+									/>
+								</Col>
+							</Row>
+							<Row className='form-grounp'>
+								<Label htmlFor='comment' xs={12}>
+									Comment
+								</Label>
+								<Col xs={12}>
+									<Control.textarea
+										model='.comment'
+										id='comment'
+										name='comment'
+										className='form-control'
+										rows='6'
+									/>
+								</Col>
+							</Row>
+							<Row className='form-group'>
+								<Col xs={12}>
+									<Button type='submit' color='primary'>
+										Submit
+									</Button>
+								</Col>
+							</Row>
+						</LocalForm>
+					</ModalBody>
+				</Modal>
+			</div>
 		);
 	}
 }
 
 const DishDetail = (props) => {
-	const [ modal, setModal ] = useState(false);
-
-	const toggleModal = () => {
-		setModal(!modal);
-	};
 	if (props.dish != null)
 		return (
 			<div className='container'>
@@ -179,8 +192,7 @@ const DishDetail = (props) => {
 				</div>
 				<div className='row'>
 					<RenderDish dish={props.dish} />
-					<RenderComments toggleModal={toggleModal} comments={props.comments} />
-					<CommentForm modal={modal} toggleModal={toggleModal} />
+					<RenderComments comments={props.comments} addComment={props.addComment} dishId={props.dish.id} />
 				</div>
 			</div>
 		);
