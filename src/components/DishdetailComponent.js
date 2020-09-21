@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import {
 	Card,
 	CardImg,
@@ -17,6 +17,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -92,7 +93,7 @@ class CommentForm extends Component {
 		return (
 			<div>
 				<Button outline color='secondary' onClick={this.toggleModal}>
-					<span class='fa fa-pencil' aria-hidden='true' /> Submit Comment
+					<span className='fa fa-pencil' aria-hidden='true' /> Submit Comment
 				</Button>
 				<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
 					<ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
@@ -175,7 +176,23 @@ class CommentForm extends Component {
 }
 
 const DishDetail = (props) => {
-	if (props.dish != null)
+	if (props.isLoading) {
+		return (
+			<div className='container'>
+				<div className='row'>
+					<Loading />
+				</div>
+			</div>
+		);
+	} else if (props.errMess) {
+		return (
+			<div className='container'>
+				<div className='row'>
+					<h4>{props.errMess}</h4>
+				</div>
+			</div>
+		);
+	} else if (props.dish != null)
 		return (
 			<div className='container'>
 				<div className='row'>
