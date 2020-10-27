@@ -1,0 +1,400 @@
+openapi: 3.0.0
+info:
+  title: Swagger Epxress API
+  description: Optional multiline or single-line description in HTML.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/
+    description: Server
+  - url: http://staging-api.example.com
+    description: Optional server description, e.g. Internal staging server for testing
+
+tags:
+  - name: User
+    description: API for user
+tags:
+  - name: Token
+    description: JWT
+tags:
+  - name: Product
+    description: API for product
+
+paths:
+  /user/register:
+    post:
+      tags:
+      - User
+      summary: Create a new user.
+      description: Enter email address, password and a base64 string.
+      parameters:
+      - name: email
+        in: body
+        description: User email 
+        required: true
+        schema:
+          type: string
+          uniqueItems: true
+      - name: password
+        in: body
+        description: Account password
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                  description: email address
+                password:
+                  type: string
+                  description: password
+                base64Image:
+                  type: string
+                  description: Avatar base64 string
+      responses:
+        '200':    
+          description: user created successfully
+        "415":
+          description: email was already used
+        "400":
+         description: input is not valid
+        "500":
+          description: image file extension is not allowed
+
+  /user/login:
+    post:
+      tags:
+      - User
+      summary: User login.
+      description: Optional extended description in CommonMark or HTML.
+      parameters:
+      - name: email
+        in: body
+        description: The user name for login
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: body
+        description: The password for login in clear text
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                  description: email address
+                password:
+                  type: string
+                  description: password
+      responses:
+        '200':    
+          description: user created successfully
+        "400":
+         description: input is not valid
+
+  /user/profile:
+    get:
+      tags:
+      - User
+      summary: Get user profile
+      description: Get user from access token
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: USER info
+        401:
+            $ref: '#/components/responses/UnauthorizedError'
+
+
+  /token/AccessToken:
+    get:
+      tags:
+      - Token
+      summary: get new access token.
+      description: new access token.
+      parameters:
+      - name: userSortKey
+        in: body
+        description: SortKey of the current user
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                refreshToken:
+                  type: string
+                  description: user sortkey to compare with payload id
+      responses:
+          200:
+            description: New access token
+          "404":
+            description: user sortkey mismatched
+  
+  /product:
+    post:
+      tags:
+        - Product
+      summary: get all product 4 at a time.
+      description: use limit and lastKey to get product.
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                limit:
+                  type: number
+                  description: page size.
+                ExclusiveStartKey:
+                  type: object
+                  description: Last object of the previous API call.
+      responses:
+          "200":
+            description: Returning items.
+            content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+          401:
+            $ref: '#/components/responses/UnauthorizedError'
+          "500":
+            description: Error
+  
+  /product/single/{id}:
+    get:
+      tags:
+      - Product
+      summary: Find product by Id
+      description: Return a single product
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        description: ID of product to return
+        required: true
+        schema: 
+          type: string
+      responses:
+        200:
+          description: Retrieved successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        400:
+          description: NO ITEM MATCH GIVEN ID
+        401:
+            $ref: '#/components/responses/UnauthorizedError'
+    
+  /product/favorite:
+    post:
+      tags:
+      - Product
+      summary: Like a product
+      description: Added a product to user favorite list
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                itemId:
+                  type: string
+                  description: Product sort key.
+      responses:
+        200:
+          description: Liked
+        401:
+            $ref: '#/components/responses/UnauthorizedError'
+        400:
+          description: Item Have Already In Favorite List
+
+  /product/favoriteList:
+    get:
+      tags:
+      - Product
+      summary: Show liked list
+      description: Display user liked product
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: RETRIEVED_SUCCESSFUL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        400:
+          description: FAVORITE_LIST_IS_EMPTY
+        401:
+            $ref: '#/components/responses/UnauthorizedError'
+  /product/disliked:
+    post:
+      tags:
+      - Product
+      summary: Unliked a product
+      description: Remove a product from favorite list
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                itemId:
+                  type: string
+                  description: Product sort key.
+      responses:
+        200:
+          description: PRODUCT_DISLIKED
+        400:
+            $ref: '#/components/responses/UnauthorizedError'
+        401:
+          description: YOU_DID_NOT_ADD_THIS_ITEM_TO_FAVORITE
+
+  /product/categories:
+    post:
+      tags:
+        - Product
+      summary: Get categories
+      description: get categories
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                category:
+                  type: string
+                  required: true
+                  description: product category
+                limit: 
+                  type: string
+                  description: item limitation
+                ExclusiveStartKey: 
+                  type: object
+                  description: last product call.
+      responses:
+        200:
+          description: RETRIEVED_SUCCESSFUL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        400:
+          description: CATEGORIES_NOT_FOUND
+        401:
+            $ref: '#/components/responses/UnauthorizedError'
+
+  /product/search/{title}:
+    get:
+      tags:
+        - Product
+      summary: Search Item.
+      description: Search an item by title
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: title
+          in: query
+          required: true
+          description: Item title.
+      responses: 
+        '200':
+          description: RETRIEVED_SUCCESSFUL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: NO_ITEM
+
+  /product/top:
+    get:
+      tags:
+        - Product
+      summary: Display top 4 product
+      description: top 4 product
+      security:
+        - bearerAuth: []
+      responses:
+        200: 
+          description: RETRIEVED_SUCCESSFUL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        400:
+          description: Error
+
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        partitionKey: 
+          type: string
+        sortKey:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        salt:
+          type: string
+        ava:
+          type: string
+        firstlogin:
+          type: integer
+          description: Account status
+    Product:
+      type: object
+      properties:
+        partitionKey:
+          type: string
+        sortKey: 
+          type: string
+        title:
+          type: string
+        img:
+          type: string
+        price:
+          type: number
+        description:
+          type: string
+        liked:
+          type: integer
+
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+      
+      
+      
+
+ 
+ 

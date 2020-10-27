@@ -1,0 +1,137 @@
+[
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK2fac5113-3c23-46dc-8e9c-b88e28e0865b",
+        "title": "bag1",
+        "description": "It is a bag",
+        "price": 150,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSKa253703a-e3d3-4bc6-ad73-c9a56f5822c2",
+        "title": "bag2",
+        "description": "Another bag",
+        "price": 100,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK73db11a8-4ed6-467e-872c-66b5354b0e3a",
+        "title": "bag3",
+        "description": "Another bag, again",
+        "price": 300,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSKb42ba8b9-c11a-4caf-b554-4af3b77721ac",
+        "title": "bag4",
+        "description": "OH! A BAG",
+        "price": 120,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSKe16a58cf-dd9d-4fea-9410-6d8b4f308c4f",
+        "title": "bag5",
+        "description": "BAAAAGGG",
+        "price": 500,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSKbe1ed9e9-fdaa-4bf9-9af2-540595530387",
+        "title": "bag6",
+        "description": "BAAAAGGGqweqe",
+        "price": 50000,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK3f4996eb-334c-4192-ad27-0afb2a932def",
+        "title": "bag7",
+        "description": "BAAAAGGGqwasdsadsaeqe",
+        "price": 10000,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK3f7ddb1e-818c-4a72-b076-20f151e85a73",
+        "title": "bag8",
+        "description": "BAAAAasdGGGqwasdsadsaeqe",
+        "price": 120000,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK280df294-aac8-4115-8a48-c02d6648d1b3",
+        "title": "bag9",
+        "description": "B.A.G",
+        "price": 1200200,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK3cf93782-9f84-445d-a0a9-58fcece5d58b",
+        "title": "bag10",
+        "description": "BaG",
+        "price": 120044200,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSKb9bc8f0c-3b61-4c32-a3ce-6d43edf17b5a",
+        "title": "watch1",
+        "description": "Finally, A watch",
+        "price": 200,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK01dae573-b863-40c4-b8cb-e4980723bf0c",
+        "title": "watch2",
+        "description": "Watch me!",
+        "price": 400,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK239dbfd2-9ca2-4c13-8205-b80a77151d28",
+        "title": "watch3",
+        "description": "Watch TV!",
+        "price": 250,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK6f121bbd-8b47-48a6-8b10-c92fa5f9fec1",
+        "title": "watch4",
+        "description": "Watchadoing!",
+        "price": 133,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    },
+    {
+        "partitionKey": "itemPK",
+        "sortKey": "itemSK158fb72a-0767-403a-8ace-ff7d342c1ccd",
+        "title": "watch5",
+        "description": "CLOCK!",
+        "price": 445,
+        "img": "https://bizweb.dktcdn.net/100/348/395/files/312513613123-removebg-preview.png?v=1593586556440",
+        "liked": 0
+    }
+]

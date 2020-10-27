@@ -1,0 +1,63 @@
+[
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSK2fac5113-3c23-46dc-8e9c-b88e28e0865b"
+    },
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSKa253703a-e3d3-4bc6-ad73-c9a56f5822c2"
+    },
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSK73db11a8-4ed6-467e-872c-66b5354b0e3a"
+    },
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSKb42ba8b9-c11a-4caf-b554-4af3b77721ac"
+    },
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSKe16a58cf-dd9d-4fea-9410-6d8b4f308c4f"
+    },
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSKbe1ed9e9-fdaa-4bf9-9af2-540595530387"
+    },
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSK3f7ddb1e-818c-4a72-b076-20f151e85a73"
+    },
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSK280df294-aac8-4115-8a48-c02d6648d1b3"
+    },
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSK3f4996eb-334c-4192-ad27-0afb2a932def"
+    },
+    {
+        "partitionKey": "bag",
+        "sortKey": "itemSK3cf93782-9f84-445d-a0a9-58fcece5d58b"
+    },
+    {
+        "partitionKey": "watch",
+        "sortKey": "itemSKb9bc8f0c-3b61-4c32-a3ce-6d43edf17b5a"
+    },
+    {
+        "partitionKey": "watch",
+        "sortKey": "itemSK01dae573-b863-40c4-b8cb-e4980723bf0c"
+    },
+    {
+        "partitionKey": "watch",
+        "sortKey": "itemSK239dbfd2-9ca2-4c13-8205-b80a77151d28"
+    },
+    {
+        "partitionKey": "watch",
+        "sortKey": "itemSK6f121bbd-8b47-48a6-8b10-c92fa5f9fec1"
+    },
+    {
+        "partitionKey": "watch",
+        "sortKey": "itemSK158fb72a-0767-403a-8ace-ff7d342c1ccd"
+    }
+
+]

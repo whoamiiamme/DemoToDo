@@ -1,0 +1,20 @@
+[
+    {
+        "partitionKey": "userPK",
+        "sortKey": "userSKcdd5f2e1-4baa-4ad4-8526-9056eee1a28c",
+        "email": "user1@gmail.com",
+        "password": "$2b$10$ykE6au/8.0vGME9hY//PdehM8HoZvIROkQczrartoOAJhf5j6SOkC",
+        "salt": "$2b$10$ykE6au/8.0vGME9hY//Pde",
+        "ava": "http://localhost:3000/static/avatars/default.jpg",
+        "firstLogin": 0
+    },
+    {
+        "partitionKey": "userPK",
+        "sortKey": "userSKd4af6253-222e-4239-8ae9-5fa409b81011",
+        "email": "user2@gmail.com",
+        "password": "$2b$10$jlEPLRcqFdXKqRWo5.OHVOuKUkDMOerjCr86.Bup4HD7yCqbg1KV.",
+        "salt": "$2b$10$jlEPLRcqFdXKqRWo5.OHVO",
+        "ava": "http://localhost:3000/static/avatars/default.jpg",
+        "firstLogin": 0
+    }
+]
